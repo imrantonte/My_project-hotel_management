@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - Grand Horizon Hotel & Resort</title>
+    <link rel="stylesheet" href="booking.css">
+</head>
+<body>
+
+<script>
+document.getElementById("book-now").addEventListener("click", function(e) {
+    e.preventDefault(); // prevent default link
+
+    if (localStorage.getItem("loggedIn") !== "true") {
+        alert("Please register or login before booking.");
+        window.location.href = "register.php";
+    } else {
+        window.location.href = "login.html";
+    }
+});
+</script>
+
+
+<!-- Navbar -->
+<ul class="navbar">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rooms.html">Rooms</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="about.html">About</a></li>
+</ul>
+
+<div class="booking-container">
+    <h1>Book Your Room</h1>
+
+    <!-- Notice -->
+    <div class="notice">
+        <p>🕒 <strong>Check-in:</strong> Starts at 11:00 AM</p>
+        <p>🕙 <strong>Check-out:</strong> By 10:00 PM</p>
+    </div>
+
+    <form id="booking-form">
+
+        <!-- Room Type -->
+        <label for="room">Room Type:</label>
+        <select id="room" name="room" required onchange="updatePrice()">
+            <option value="" disabled selected>Select a room</option>
+            <option value="single" data-price="50">Single Room</option>
+            <option value="double" data-price="80">Double Room</option>
+            <option value="deluxe" data-price="120">Deluxe Room</option>
+            <option value="suite" data-price="200">Suite</option>
+        </select>
+
+        <!-- Price Display -->
+        <p id="price">Price: $0</p>
+
+        <!-- Check-in Date -->
+        <label for="checkin">Check-in Date:</label>
+        <input type="date" id="checkin" name="checkin" required>
+
+        <!-- Check-out Date -->
+        <label for="checkout">Check-out Date:</label>
+        <input type="date" id="checkout" name="checkout" required>
+
+        <!-- Phone -->
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="+1 555 123 4567" required>
+
+        <!-- Payment Method -->
+        <label for="payment">Payment Method:</label>
+        <select id="payment" name="payment" required>
+            <option value="" disabled selected>Select payment</option>
+            <option value="bkash">Bkash</option>
+            <option value="nagad">Nagad</option>
+            <option value="card">Credit/Debit Card</option>
+        </select>
+
+        <!-- Buttons -->
+        <div class="form-buttons">
+            <button type="button" id="cancel-btn">Cancel Booking</button>
+            <input type="submit" value="Confirm Booking">
+        </div>
+
+        <!-- Success Message -->
+        <p id="success-message" class="hidden">
+            Booking successful! Thank you for choosing Grand Horizon Hotel.
+        </p>
+    </form>
+</div>
+
+<!-- JS -->
+<script>
+    const roomSelect = document.getElementById('room');
+    const priceDisplay = document.getElementById('price');
+    const form = document.getElementById('booking-form');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const successMessage = document.getElementById('success-message');
+
+    function updatePrice() {
+        const selectedOption = roomSelect.options[roomSelect.selectedIndex];
+        const price = selectedOption.dataset.price || 0;
+        priceDisplay.textContent = `Price: $${price}`;
+    }
+
+    cancelBtn.addEventListener('click', () => {
+        form.reset();
+        priceDisplay.textContent = 'Price: $0';
+        successMessage.classList.add('hidden');
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const checkin = document.getElementById("checkin").value;
+        const checkout = document.getElementById("checkout").value;
+
+        if (checkin >= checkout) {
+            alert("Check-out date must be after check-in date.");
+            return;
+        }
+
+        successMessage.classList.remove('hidden');
+    });
+</script>
+<script>
+const checkin = document.getElementById("checkin");
+const checkout = document.getElementById("checkout");
+
+// Get today's date
+const today = new Date().toISOString().split('T')[0];
+
+// Set minimum selectable dates
+checkin.min = today;
+checkout.min = today;
+
+// Ensure checkout is always after check-in
+checkin.addEventListener("change", () => {
+    checkout.min = checkin.value;
+});
+</script>
+
+
+</body>
+</html>
