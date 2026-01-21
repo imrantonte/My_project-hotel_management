@@ -60,9 +60,10 @@ if (isset($_POST['submit'])) {
         <input type="password" name="pass" placeholder="Password" required>
         <input type="password" name="cpass" placeholder="Confirm Password" required>
 
-        <button type="submit" name="submit">Register</button>
-    </form>
+  <button type="submit" name="submit" class="register-btn">Register</button>
 
+    </form>
+<br>
     <p>Already have an account? <a href="login.php">Login</a></p>
 </div>
 
@@ -70,7 +71,7 @@ if (isset($_POST['submit'])) {
 <script>
     alert("Registration successful!");
     localStorage.setItem("loggedIn", "true");
-    window.location.href = "booking.html";
+    window.location.href = "booking.php";
 </script>
 <?php endif; ?>
 

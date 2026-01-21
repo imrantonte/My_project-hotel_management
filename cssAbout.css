@@ -14,31 +14,65 @@ body {
 }
 
 /* Navbar */
-ul {
-    list-style-type: none;
-    background-color: #004080; /* dark blue navbar */
-    overflow: hidden;
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+ul.navbar {
+    list-style: none;
     display: flex;
     justify-content: center;
-    padding: 0;
+    align-items: center;
+    gap: 40px;
+
+    width: 100%;
+    padding: 18px 0;
+
+    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+    backdrop-filter: blur(10px);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
-ul li {
-    margin: 0;
-}
-
-ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 20px;
+/* Navbar links */
+ul.navbar li a {
+    position: relative;
+    color: #f8f9fa;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
     text-decoration: none;
-    transition: 0.3s;
+    padding: 10px 5px;
+    transition: all 0.3s ease;
 }
 
-ul li a:hover {
-    background-color: #0066cc;
-    color: white;
+/* Hover underline animation */
+ul.navbar li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, gold, #ffd700);
+    transition: width 0.3s ease;
+}
+
+/* Hover effect */
+ul.navbar li a:hover {
+    color: #ffd700;
+}
+
+ul.navbar li a:hover::after {
+    width: 100%;
 }
 
 /* Headings */
@@ -139,7 +173,7 @@ form input[type="submit"]:hover {
     position: absolute;
     color: white;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.4); /* semi-transparent overlay */
+   
     padding: 20px 40px;
     border-radius: 10px;
 }
@@ -147,7 +181,7 @@ form input[type="submit"]:hover {
 /* Footer */
 footer {
     text-align: center;
-    background-color: #004080;
+   
     color: white;
     padding: 15px 0;
     margin-top: 30px;
@@ -167,5 +201,91 @@ footer a {
     form {
         padding: 20px;
         margin: 20px;
+    }
+}
+/* ================= GLOBAL ================= */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+    color: #333;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(135deg, #203a43, #2c5364);
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.navbar li a {
+    display: block;
+    padding: 15px 25px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.navbar li a:hover {
+    background-color: rgba(255,255,255,0.15);
+    color: gold;
+}
+
+/* ================= ABOUT CONTENT ================= */
+h1 {
+    text-align: center;
+    font-size: 42px;
+    margin-top: 60px;
+    color: #203a43;
+}
+
+.one {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 20px;
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: center;
+    color: #555;
+}
+
+/* ================= HERO IMAGE ================= */
+footer {
+    margin: 0;
+    padding: 20px 0;
+    background-color: #0f2027;
+    color: #ddd;
+    text-align: center;
+    font-size: 15px;
+}
+
+footer a {
+    color: gold;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .featured-rooms h2,
+    .services h2,
+    .testimonials h2 {
+        font-size: 28px;
     }
 }

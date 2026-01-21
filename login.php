@@ -2,6 +2,7 @@
 session_start(); // optional if using PHP sessions
 $connect = mysqli_connect("localhost", "root", "", "registration");
 
+
 if (!$connect) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -21,7 +22,7 @@ if (isset($_POST['login'])) {
         echo "<script>
                 localStorage.setItem('loggedIn', 'true');
                 alert('Login successful!');
-                window.location.href = 'booking.html';
+                window.location.href = 'booking.php';
               </script>";
         exit();
     } else {
