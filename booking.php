@@ -155,7 +155,7 @@ button {
 
 <div class="price-box" id="totalPrice">Total Price: $0</div>
 
-<!-- 🔴 IMPORTANT: hidden input -->
+
 <input type="hidden" name="total_price" id="total_price">
 
 <label>Payment Method</label>
